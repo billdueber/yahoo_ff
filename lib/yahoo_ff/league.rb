@@ -1,7 +1,7 @@
 # Basic representation of a league.
 require 'mechanize'
 
-module Yahoo_FF
+module YahooFF
   class League
   
 
@@ -40,6 +40,10 @@ module Yahoo_FF
 
     # Log into Yahoo with the given username/password
     def login
+      unless (@login and @password)
+        raise "Can't log in without login and password"
+      end
+      
       lform = @agent.get('https://login.yahoo.com/config/login').form('login_form')
       lform.login   = @login
       lform.passwd  = @password

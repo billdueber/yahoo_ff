@@ -1,8 +1,8 @@
-# yahoo_ff
+# YahooFF
 
-* [Homepage](https://github.com/billdueber/yahoo_ff#readme)
-* [Issues](https://github.com/billdueber/yahoo_ff/issues)
-* [Documentation](http://rubydoc.info/gems/yahoo_ff/frames)
+* [Homepage](https://github.com/billdueber/YahooFF#readme)
+* [Issues](https://github.com/billdueber/YahooFF/issues)
+* [Documentation](http://rubydoc.info/gems/YahooFF/frames)
 * [Email](mailto:bill at dueber.com)
 
 ## Description
@@ -13,13 +13,13 @@ TODO: Description
 
 ## Examples
 
-    require 'yahoo_ff'
+    require 'YahooFF'
 
 ## Requirements
 
 ## Install
 
-    $ gem install yahoo_ff
+    $ gem install YahooFF
 
 ## Copyright
 

@@ -1,16 +1,16 @@
 # -*- encoding: utf-8 -*-
 
-require File.expand_path('../lib/yahoo_ff/version', __FILE__)
+require File.expand_path('../lib/YahooFF/version', __FILE__)
 
 Gem::Specification.new do |gem|
-  gem.name          = "yahoo_ff"
+  gem.name          = "YahooFF"
   gem.version       = YahooFf::VERSION
   gem.summary       = %q{TODO: Summary}
   gem.description   = %q{TODO: Description}
   gem.license       = "MIT"
   gem.authors       = ["Bill Dueber"]
   gem.email         = "bill@dueber.com"
-  gem.homepage      = "https://github.com/billdueber/yahoo_ff#readme"
+  gem.homepage      = "https://github.com/billdueber/YahooFF#readme"
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }

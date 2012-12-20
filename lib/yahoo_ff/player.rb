@@ -1,4 +1,4 @@
-module Yahoo_FF
+module YahooFF
   class Player
     
     attr_accessor :name, :pos, :slot, :points

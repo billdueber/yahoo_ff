@@ -1,5 +1,5 @@
 require 'helper'
-require 'yahoo_ff'
+require 'YahooFF'
 
 class TestYahooFf < Test::Unit::TestCase
 

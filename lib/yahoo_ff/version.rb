@@ -1,4 +1,4 @@
 module YahooFf
-  # yahoo_ff version
+  # YahooFF version
   VERSION = "0.1.0"
 end

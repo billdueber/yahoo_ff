@@ -1,4 +1,4 @@
-module Yahoo_FF
+module YahooFF
   module Parser
     class Schedule
       
