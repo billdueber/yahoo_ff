@@ -2,8 +2,9 @@ module YahooFF
   module Parser
     class Schedule
       
+      attr_accessor :schedule_dir
       def initialize(schedule_dir)
-        @dir = schedule_dir
+        @schedule_dir = schedule_dir
         @id_name_map = nil
         @opponents = {}
       end
@@ -11,7 +12,7 @@ module YahooFF
       def id_name_map
         return @id_name_map if @id_name_map
         @id_name_map = {}
-        filename = "#{@dir}/1.html"
+        filename = "#{@schedule_dir}/1.html"
         n = Nokogiri.HTML(File.open(filename))
         n.css('#scheduletable td.team a').each do |t|
           name = t.text
@@ -24,11 +25,11 @@ module YahooFF
       # Figure out which teams played each other for the
       # given week
       #
-      # @return Array of the form [[id1=>pts, id2=>pts], ...]
+      # @return Array of the form [[team_id1, team_id2], ...]
       def opponents(week)
         return @opponents[week] if @opponents[week]
         
-        filename = "#{@dir}/#{week}.html"
+        filename = "#{@schedule_dir}/#{week}.html"
         n = Nokogiri.HTML(File.open(filename))
 
         @opponents[week] = []
@@ -44,11 +45,8 @@ module YahooFF
           t2 = second.css('td.team a')[0]
           t2num = t2.attr('href').split('/')[-1]
           t2name = t2.text
-
-          t1pts = first.css('td.score').text.to_i
-          t2pts = second.css('td.score').text.to_i
           
-          @opponents[week] << [{t1num => t1pts}, {t2num=>t2pts}]
+          @opponents[week] << [t1num, t2num]
         end
         
         return @opponents[week]

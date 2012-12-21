@@ -1,10 +1,10 @@
 # -*- encoding: utf-8 -*-
 
-require File.expand_path('../lib/YahooFF/version', __FILE__)
+require File.expand_path('../lib/yahoo_ff/version', __FILE__)
 
 Gem::Specification.new do |gem|
   gem.name          = "YahooFF"
-  gem.version       = YahooFf::VERSION
+  gem.version       = YahooFF::VERSION
   gem.summary       = %q{TODO: Summary}
   gem.description   = %q{TODO: Description}
   gem.license       = "MIT"
