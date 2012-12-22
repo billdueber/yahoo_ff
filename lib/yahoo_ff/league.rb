@@ -6,7 +6,7 @@ module YahooFF
   
 
 
-    attr_accessor :login, :password, :game_weeks,
+    attr_accessor :login, :password, :game_weeks, :team_games,
                   :id, :teams, :weeks, :data_dir
   
     #@param Hash opts Options
@@ -60,8 +60,12 @@ module YahooFF
       end
     end
     
+    def team_name id
+      return @id_name_map[id]
+    end
     
-    def load(force = false)
+    
+    def load!(force = false)
       get_schedules(force)
       get_team_weeks(force)
       
@@ -73,6 +77,7 @@ module YahooFF
       
       @weeks = []
       @teams = {}
+      @team_games = {}
       
       @week_nums.each do |week|
         w = YahooFF::Week.new(week)
@@ -89,10 +94,16 @@ module YahooFF
           game = YahooFF::Game.new(week, tw1, tw2)
           w.games << game
           w.teamweeks += [tw1, tw2]
+          
+          @team_games[opp[0]] ||= []
+          @team_games[opp[1]] ||= []
+          
+          @team_games[opp[0]] << game
+          @team_games[opp[1]] << game
+          
         end
         @weeks[week] = w
       end
-      
     end    
     
 

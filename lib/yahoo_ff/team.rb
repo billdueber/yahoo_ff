@@ -11,8 +11,8 @@ module YahooFF
       @players = players
     end
     
-    def actual_points
-      return self.points(->(p){p.played?})
+    def actual_points(slots = %w[QB WR RB TE WRRB K DEF])
+      return self.points(->(p){slots.include? p.slot})
     end
     
     def best_points(positions = %w[QB WR RB TE WRRB K DEF])
@@ -36,7 +36,7 @@ module YahooFF
       end
       return self.class.new(@team_id, @week, best_roster)
     end
-      
+    
 
   end
 end

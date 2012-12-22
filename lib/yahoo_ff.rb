@@ -9,7 +9,7 @@ require 'yahoo_ff/player'
 require 'yahoo_ff/game'
 
 
-# league = YahooFF::League.new(:username=>'wdueber', :password=>'schlepp', :league_id=>168293, :teams=>14, :weeks=>13, :data_dir=>'./sample')
+
 
         
 

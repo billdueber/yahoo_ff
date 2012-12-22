@@ -14,5 +14,7 @@ module YahooFF
       @games = []
       @teamweeks = []
     end
+    
+    
   end
 end

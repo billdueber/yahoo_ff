@@ -16,7 +16,7 @@ module YahooFF
         n = Nokogiri.HTML(File.open(filename))
         n.css('#scheduletable td.team a').each do |t|
           name = t.text
-          num = t.attr('href').split('/')[-1].to_i
+          num = t.attr('href').split('/')[-1]
           @id_name_map[num] = name
         end
         return @id_name_map
