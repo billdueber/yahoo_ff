@@ -21,13 +21,15 @@ module YahooFF
     def initialize(opts)
       @agent =  Mechanize.new
       @agent.user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1309.0 Safari/537.17"
-      @login = opts.fetch(:username, 'wdueber')
-      @password = opts.fetch(:password,'schlepp')
+      @login = opts.fetch(:username)
+      @password = opts.fetch(:password)
       @id = opts.fetch(:league_id)
       @teams = (1..opts.fetch(:teams)).to_a
-      @week_nums = (1..opts.fetch(:weeks, 13)).to_a
+      @week_nums = (1..opts.fetch(:weeks)).to_a
       
-      self.data_dir = opts.fetch(:data_dir, '.')
+      
+      dd = opts.fetch(:data_dir) || '.'
+      self.data_dir = dd
 
       FileUtils.mkpath(@schedule_dir)
       FileUtils.mkpath(@teamweek_dir)
@@ -70,12 +72,20 @@ module YahooFF
       @schedule    = sp.schedule(@week_nums)
       
       @weeks = []
+      @teams = {}
       
       @week_nums.each do |week|
         w = YahooFF::Week.new(week)
         @schedule[week].each do |opp|
           tw1 = twp.get_team_for_week(opp[0], week)
           tw2 = twp.get_team_for_week(opp[1], week)
+          
+          @teams[opp[0]] ||= []
+          @teams[opp[1]] ||= []
+          
+          @teams[opp[0]] << tw1
+          @teams[opp[1]] << tw2
+          
           game = YahooFF::Game.new(week, tw1, tw2)
           w.games << game
           w.teamweeks += [tw1, tw2]
