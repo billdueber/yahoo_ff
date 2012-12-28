@@ -15,7 +15,7 @@ module YahooFF
     end
     
     def slot_to?(slot)
-      return true if slot == @slot
+      return true if slot == @pos
       return true if (slot == 'WRRB') and (%w[RB WR].include?(@pos))
       return false;
     end

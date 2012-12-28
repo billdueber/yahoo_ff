@@ -1,5 +1,6 @@
 $:.unshift('lib')
 require 'yahoo_ff'
+require 'pry'
 
 league = YahooFF::League.new(:username=>'wdueber', :password=>'schlepp', :league_id=>168293, :teams=>14, :weeks=>13, :data_dir=>'./sample')
 league.load!
@@ -21,7 +22,9 @@ league.team_games.each_pair do |team_id, games|
   team_name = league.team_name(team_id)
   actual, mebest, bothbest = 0,0,0
   games.each do |g|
-    next if g.teams.map{|t| t.team_id}.include? 14 # league average
+    next if g.teams.map{|t| t.team_id}.include? '14' # league average
+    me = g.team(team_id)
+    opp =  g.opp(team_id)
     actual += 1 if g.team(team_id).actual_points > g.opp(team_id).actual_points
     mebest += 1 if g.team(team_id).best_points > g.opp(team_id).actual_points
     bothbest += 1 if g.team(team_id).best_points > g.opp(team_id).best_points    
@@ -42,3 +45,17 @@ league.team_games.each_pair do |team_id, games|
   end
   puts [team_name, actual, note, nok].join("\t")
 end
+
+puts "Record if you played every team every week (ignoring League Average)"
+puts ['Team', "Actual", "Me best", "Both best"].join("\t")
+
+# For each week, see how many games they would have won under all conditions
+league.weeks.each do |week|
+end
+
+
+
+
+
+
+
